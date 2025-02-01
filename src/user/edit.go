@@ -9,6 +9,7 @@ import (
 
 type EditRequestJSON struct {
 	Email string `validate:"email"`
+	Role  string `validate:"omitempty,role"`
 }
 
 func UserEdit(w http.ResponseWriter, req *http.Request) {
@@ -54,6 +55,17 @@ func UserEdit(w http.ResponseWriter, req *http.Request) {
 			} 
 
 			toSet["Email"] = request.Email
+		}
+
+		if request.Role != "" {
+			if utils.AdminOnly(w, req) != nil {
+				return
+			}
+
+			toSet["Role"] = utils.USER
+			if request.Role == "ADMIN" {
+				toSet["Role"] = utils.ADMIN
+			}
 		}
 
 		_, err := c.UpdateOne(nil, map[string]interface{}{
