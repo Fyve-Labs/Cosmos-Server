@@ -49,10 +49,14 @@ func parseECPublicKeyFromPEM(publicKeyPEM []byte) (*ecdsa.PublicKey, error) {
 var FBL *FirebaseApiSdk
 
 func InitFBL() {
-	FBL = _InitFBL()
-	if FBL.UserNumber == 0 {
-		FBL.UserNumber = 5
+	FBL = &FirebaseApiSdk{
+		BaseURL:    "",
+		UserNumber: 1000,
+		LValid:     true,
 	}
+	// if FBL.UserNumber == 0 {
+	// 	FBL.UserNumber = 5
+	// }
 }
 
 func _InitFBL() *FirebaseApiSdk {
