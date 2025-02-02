@@ -9,7 +9,7 @@ import (
 
 type EditRequestJSON struct {
 	Email string `validate:"email"`
-	Role  string `validate:"omitempty,role"`
+	Role  string `validate:"omitempty,oneof=ADMIN USER"`
 }
 
 func UserEdit(w http.ResponseWriter, req *http.Request) {
