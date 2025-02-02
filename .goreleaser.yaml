@@ -6,7 +6,7 @@ release:
 builds:
   - id: build
     main: ./src/.
-    binary: answer
+    binary: cosmos
     ldflags: -s -w
     flags: -v
     goos:
