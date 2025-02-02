@@ -1,0 +1,28 @@
+version: 2
+
+env:
+  - GO11MODULE=on
+  - GO111MODULE=on
+  - GOPROXY=https://goproxy.io,direct
+  - CGO_ENABLED=0
+
+before:
+  hooks:
+    - go mod tidy
+
+release:
+  draft: true
+
+builds:
+  - id: build
+    main: ./src/.
+    binary: answer
+    ldflags: -s -w
+    flags: -v
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+      
