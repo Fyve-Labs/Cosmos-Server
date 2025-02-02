@@ -1,0 +1,17 @@
+version: 2
+
+release:
+  draft: true
+
+builds:
+  - id: build
+    main: ./src/.
+    binary: cosmos
+    ldflags: -s -w
+    flags: -v
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+      
